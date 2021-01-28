@@ -16,7 +16,10 @@ namespace TMS_DotNet04_Savitski.WepApi.Services
             _commands = new List<ITelegramCommand>
             {
                 new StartCommand(),
-                new AboutCommand()
+                new AboutCommand(),
+                new NbRateCommand(),
+                new Myfin_MinskCommand(),
+                new Myfin_SvetlogorskCommand()
             };
         }
 

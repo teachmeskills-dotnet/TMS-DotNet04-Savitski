@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 
 namespace TMS_DotNet04_Savitski.WepApi.Interfaces
@@ -10,7 +8,7 @@ namespace TMS_DotNet04_Savitski.WepApi.Interfaces
     {
         string Name { get; }
 
-        Task Execute(Message message ,ITelegramCommand client);
+        Task Execute(Message message ,ITelegramBotClient client);
 
         bool Contains(Message message);
     }
