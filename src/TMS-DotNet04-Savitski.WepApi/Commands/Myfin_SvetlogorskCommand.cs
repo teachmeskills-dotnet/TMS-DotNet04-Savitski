@@ -19,7 +19,7 @@ namespace TMS_DotNet04_Savitski.WepApi.Commands
             var chatId = message.Chat.Id;
             foreach (var rate in rates)
             {
-                await client.SendTextMessageAsync(chatId, $"Имя банка: {rate.BankName}, Покупка доллара: {rate.BankBuyUSD}, Продажа доллара: {rate.BankSellUSD}, Покупка евро: {rate.BankBuyEUR}, Продажа евро: {rate.BankSellEUR}, Покупка российских рублей (за 100 рублей): {rate.BankBuyRUS}, Продажа российских рублей (за 100 рублей): {rate.BankSellRUS}");
+                await client.SendTextMessageAsync(chatId, $"{rate.BankName}\n Покупка доллара: {rate.BankBuyUSD}\n Продажа доллара: {rate.BankSellUSD}\n Покупка евро: {rate.BankBuyEUR}\n Продажа евро: {rate.BankSellEUR}\n Покупка российских рублей (за 100 рублей): {rate.BankBuyRUS}\n Продажа российских рублей (за 100 рублей): {rate.BankSellRUS}");
             }
         }
         public bool Contains(Message message) => message.Type == MessageType.Text && message.Text.Contains(Name);

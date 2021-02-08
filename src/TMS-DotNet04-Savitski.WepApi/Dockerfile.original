@@ -1,0 +1,22 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+WORKDIR /src
+COPY ["src/TMS-DotNet04-Savitski.WepApi/TMS-DotNet04-Savitski.WepApi.csproj", "src/TMS-DotNet04-Savitski.WepApi/"]
+RUN dotnet restore "src/TMS-DotNet04-Savitski.WepApi/TMS-DotNet04-Savitski.WepApi.csproj"
+COPY . .
+WORKDIR "/src/src/TMS-DotNet04-Savitski.WepApi"
+RUN dotnet build "TMS-DotNet04-Savitski.WepApi.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "TMS-DotNet04-Savitski.WepApi.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet TMS-DotNet04-Savitski.WepApi.dll

@@ -22,7 +22,11 @@ namespace TMS_DotNet04_Savitski.WepApi
             services.AddHealthChecks();
             services.AddScoped<ICommandService, CommandService>();
             services.AddTelegramBotClient(_configuration);
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            }); ;
         }
 
 

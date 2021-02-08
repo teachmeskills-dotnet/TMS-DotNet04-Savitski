@@ -27,12 +27,19 @@ namespace TMS_DotNet04_Savitski.WepApi.Services
                 {
                     if(node.Name == "td")
                     {
-                        values.Add(node.InnerText.Replace("\n", "").Replace(".", ","));
+                        values.Add(node.InnerText.Replace("\n", "").Trim());
                     }
                 }
-                var rate = new BankCurrencesOnMyfin();
-                rate.AddCurrences(values);
-                rates.Add(rate);
+                rates.Add(new BankCurrencesOnMyfin
+                {
+                    BankName = values[0],
+                    BankBuyUSD = double.Parse(values[1]),
+                    BankSellUSD = double.Parse(values[2]),
+                    BankBuyEUR = double.Parse(values[3]),
+                    BankSellEUR = double.Parse(values[4]),
+                    BankBuyRUS = double.Parse(values[5]),
+                    BankSellRUS = double.Parse(values[6]),
+                });
             }
             return rates;
         }
@@ -50,14 +57,21 @@ namespace TMS_DotNet04_Savitski.WepApi.Services
 
                 foreach (var node in item.ChildNodes)
                 {
-                    if(node.Name == "tr")
+                    if(node.Name == "td")
                     {
-                        values.Add(node.InnerText.Replace("\n", "").Replace(".", ","));
+                        values.Add(node.InnerText.Replace("\n", "").Trim());
                     }
                 }
-                var rate = new BankCurrencesOnMyfin();
-                rate.AddCurrences(values);
-                rates.Add(rate);
+                rates.Add(new BankCurrencesOnMyfin
+                {
+                    BankName = values[0],
+                    BankBuyUSD = double.Parse(values[1]),
+                    BankSellUSD = double.Parse(values[2]),
+                    BankBuyEUR = double.Parse(values[3]),
+                    BankSellEUR = double.Parse(values[4]),
+                    BankBuyRUS = double.Parse(values[5]),
+                    BankSellRUS = double.Parse(values[6]),
+                });
             }
             return rates;
         }
