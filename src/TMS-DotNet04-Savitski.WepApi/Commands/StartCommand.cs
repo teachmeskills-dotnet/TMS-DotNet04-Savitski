@@ -10,6 +10,7 @@ namespace TMS_DotNet04_Savitski.WepApi.Commands
     public class StartCommand : ITelegramCommand
     {
         public string Name => Start.Link;
+
         public async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
@@ -17,6 +18,5 @@ namespace TMS_DotNet04_Savitski.WepApi.Commands
         }
 
         public bool Contains(Message message) => message.Type == MessageType.Text && message.Text.Contains(Name);
-
     }
 }

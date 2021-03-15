@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TMS_DotNet04_Savitski.WepApi.Commands;
 using TMS_DotNet04_Savitski.WepApi.Interfaces;
 
@@ -13,6 +10,7 @@ namespace TMS_DotNet04_Savitski.WepApi.Services
 
         public CommandService(IEnumerable<ITelegramCommand> commands)
         {
+
             _commands = new List<ITelegramCommand>
             {
                 new StartCommand(),

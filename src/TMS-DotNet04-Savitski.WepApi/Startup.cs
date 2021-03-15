@@ -1,21 +1,21 @@
-using TMS_DotNet04_Savitski.WepApi.Interfaces;
-using TMS_DotNet04_Savitski.WepApi.Services;
-using TMS_DotNet04_Savitski.WepApi.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using TMS_DotNet04_Savitski.WepApi.Extensions;
+using TMS_DotNet04_Savitski.WepApi.Interfaces;
+using TMS_DotNet04_Savitski.WepApi.Services;
 
 namespace TMS_DotNet04_Savitski.WepApi
 {
     public class Startup
     {
         private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -28,7 +28,6 @@ namespace TMS_DotNet04_Savitski.WepApi
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             }); ;
         }
-
 
         public void Configure(IApplicationBuilder app)
         {

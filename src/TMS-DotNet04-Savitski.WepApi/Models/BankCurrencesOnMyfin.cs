@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-
-
-namespace TMS_DotNet04_Savitski.WepApi.Models
+﻿namespace TMS_DotNet04_Savitski.WepApi.Models
 {
     public class BankCurrencesOnMyfin
     {

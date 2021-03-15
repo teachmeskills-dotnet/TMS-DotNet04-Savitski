@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TMS_DotNet04_Savitski.WepApi.Models
+﻿namespace TMS_DotNet04_Savitski.WepApi.Models
 {
     public class Currency
     {

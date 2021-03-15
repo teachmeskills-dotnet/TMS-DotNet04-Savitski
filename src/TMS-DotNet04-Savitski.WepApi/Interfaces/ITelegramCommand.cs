@@ -8,7 +8,7 @@ namespace TMS_DotNet04_Savitski.WepApi.Interfaces
     {
         string Name { get; }
 
-        Task Execute(Message message ,ITelegramBotClient client);
+        Task Execute(Message message, ITelegramBotClient client);
 
         bool Contains(Message message);
     }

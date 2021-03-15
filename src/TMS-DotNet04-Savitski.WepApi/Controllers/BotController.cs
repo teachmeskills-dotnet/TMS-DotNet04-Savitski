@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+using TMS_DotNet04_Savitski.WepApi.Commands;
 using TMS_DotNet04_Savitski.WepApi.Interfaces;
 
 namespace TMS_DotNet04_Savitski.WepApi.Controllers
@@ -26,22 +24,37 @@ namespace TMS_DotNet04_Savitski.WepApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Update update)
         {
-            if(update == null)
-            {
-                return NoContent();
-            }
+            if (update == null)
+                {
+                    return NoContent();
+                }
 
             var message = update.Message;
+            var mes = update.CallbackQuery;
 
-            foreach (var command in _commandService.Get())
+            switch (update.Type)
             {
-                if (command.Contains(message))
-                {
-                    await command.Execute(message, (ITelegramBotClient)_telegramBotClient);
-                    break;
-                }
+                case UpdateType.Message:
+                    {
+                        foreach (var command in _commandService.Get())
+                        {
+                            if (command.Contains(message))
+                            {
+                                await command.Execute(message, _telegramBotClient);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                //case UpdateType.CallbackQuery:
+                //    {
+                //        if(mes.ToString() == "myCommand1")
+                //        {
+                //            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, "salam");
+                //        }
+                //        break;
+                //    }
             }
-
             return Ok();
         }
     }

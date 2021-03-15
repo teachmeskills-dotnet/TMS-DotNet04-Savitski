@@ -11,6 +11,7 @@ namespace TMS_DotNet04_Savitski.WepApi.Commands
     public class NbRateCommand : ITelegramCommand
     {
         public string Name => NbRates.Link;
+
         public async Task Execute(Message message, ITelegramBotClient client)
         {
             INbrbRates nbrbRates = new NbrbRates();
@@ -20,11 +21,10 @@ namespace TMS_DotNet04_Savitski.WepApi.Commands
 
             foreach (var rate in rates)
             {
-                await client.SendTextMessageAsync(chatId,$"{rate.Cur_Name} - {rate.Cur_OfficialRate} белорусских рублей");
+                await client.SendTextMessageAsync(chatId, $"{rate.Cur_Name} - {rate.Cur_OfficialRate} белорусских рублей");
             }
         }
 
         public bool Contains(Message message) => message.Type == MessageType.Text && message.Text.Contains(Name);
-
     }
 }
